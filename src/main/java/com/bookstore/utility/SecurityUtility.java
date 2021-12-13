@@ -1,7 +1,13 @@
 package com.bookstore.utility;
 
+import java.util.Random;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
+
+
 
 @Component
 public class SecurityUtility {
@@ -11,6 +17,22 @@ public class SecurityUtility {
 		return null;
 	}
 
+	
+	@Bean
+	public static String generatingRandomAlphabeticString() {
+	    int leftLimit = 97; // letter 'a'
+	    int rightLimit = 122; // letter 'z'
+	    int targetStringLength = 10;
+	    Random random = new Random();
+
+	    String generatedString = random.ints(leftLimit, rightLimit + 1)
+	      .limit(targetStringLength)
+	      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+	      .toString();
+
+	    return generatedString;
+	}
+	
 	
 	
 	

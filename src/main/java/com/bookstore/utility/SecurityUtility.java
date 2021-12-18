@@ -1,5 +1,6 @@
 package com.bookstore.utility;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 import org.springframework.context.annotation.Bean;
@@ -13,15 +14,14 @@ import org.springframework.stereotype.Component;
 public class SecurityUtility {
 
 	public static BCryptPasswordEncoder passwordEncoder() {
-		// TODO Auto-generated method stub
-		return null;
+		return new BCryptPasswordEncoder(12, new SecureRandom());
 	}
 
 	
 	@Bean
-	public static String generatingRandomAlphabeticString() {
-	    int leftLimit = 97; // letter 'a'
-	    int rightLimit = 122; // letter 'z'
+	public static String randomPassword() {
+	    int leftLimit = 65; // letter 'A'
+	    int rightLimit = 90; // letter 'Z'
 	    int targetStringLength = 10;
 	    Random random = new Random();
 

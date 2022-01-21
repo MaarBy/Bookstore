@@ -25,23 +25,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-public class User implements UserDetails{
+public class Address implements UserDetails{
 
 	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id", nullable = false, updatable = false)
-	private Long id;
-	private String username;
-	private String password;
-	private String firstName;
-	private String lastName;
-		
-	@Column(name="email", nullable = false, updatable = false)
-	private String email;
+	@Column(name="address_id", nullable = false, updatable = false)
+	private int address_id;
+	
+	@Column(name="address", nullable = false, updatable = false)
+	private String address;
+	private String address2;
+	private String district;
+	private String city_id;
+	private String postal_code;
 	private String phone;
-	private boolean enabled=true;
+		
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
@@ -50,41 +50,49 @@ public class User implements UserDetails{
 	
 	
 	
-	public Long getId() {
-		return id;
+	
+	
+	public int getAddress_id() {
+		return address_id;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setAddress_id(int address_id) {
+		this.address_id = address_id;
 	}
-	public String getUsername() {
-		return username;
+	public String getAddress() {
+		return address;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String getPassword() {
-		return password;
+	public String getAddress2() {
+		return address2;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
-	public String getFirstName() {
-		return firstName;
+	public String getDistrict() {
+		return district;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setDistrict(String district) {
+		this.district = district;
 	}
-	public String getLastName() {
-		return lastName;
+	public String getCity_id() {
+		return city_id;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setCity_id(String city_id) {
+		this.city_id = city_id;
 	}
-	public String getEmail() {
-		return email;
+	public String getPostal_code() {
+		return postal_code;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPostal_code(String postal_code) {
+		this.postal_code = postal_code;
+	}
+	public Set<UserRole> getUserRoles() {
+		return userRoles;
+	}
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 	public String getPhone() {
 		return phone;
@@ -94,15 +102,7 @@ public class User implements UserDetails{
 	}
 
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
-	}
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
-	}
+	
 	
 	
 	
@@ -127,10 +127,21 @@ public class User implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
-	
 	@Override
 	public boolean isEnabled() {
-		return enabled;
+		// TODO Auto-generated method stub
+		return false;
 	}
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }
